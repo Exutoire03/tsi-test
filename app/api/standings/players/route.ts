@@ -16,9 +16,11 @@ export async function GET() {
       };
     });
 
-    // Classement basé sur le nombre de points
+    // Classement basé sur la somme des points, rebonds et assists
     const sortedPlayers = playersWithTeamInfo.sort((a, b) => {
-      return b.stats.points - a.stats.points;
+      const scoreA = a.stats.points + a.stats.rebounds + a.stats.assists;
+      const scoreB = b.stats.points + b.stats.rebounds + b.stats.assists;
+      return scoreB - scoreA;
     });
 
     return NextResponse.json(sortedPlayers, { status: 200 });
