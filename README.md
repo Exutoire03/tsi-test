@@ -115,8 +115,10 @@ tsi-basket-league/
 │   ├── matchs/                # Page des matchs
 │   ├── players/               # Page des joueurs
 │   ├── standings/             # Page du classement
+│   ├── legal-notice/          # Page des mentions légales
+│   ├── privacy-policy/        # Page de politique de confidentialité
 │   ├── teams/                 # Pages des équipes
-│   │   └── [id]/             # Page détail équipe
+│   ├── contact/               # Page de contact
 │   ├── globals.css           # Styles globaux + variables CSS
 │   ├── layout.tsx            # Layout racine
 │   └── page.tsx              # Page d'accueil
@@ -124,7 +126,10 @@ tsi-basket-league/
 │   ├── Footer.tsx            # Composant Footer
 │   ├── Header.tsx            # Composant Header + ThemeToggle
 │   ├── MatchCard.tsx         # Carte de match
+│   ├── Notifications.tsx      # Composant Notifications
 │   ├── PlayerCard.tsx        # Carte de joueur
+│   ├── PlayerStandingsTable.tsx    # Tableau de classement des joueurs 
+│   ├── Providers.tsx         # Providers
 │   ├── StandingsTable.tsx    # Tableau de classement
 │   └── TeamCard.tsx          # Carte d'équipe
 ├── data/
