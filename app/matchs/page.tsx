@@ -26,7 +26,6 @@ function getTeam(teamId: number) {
 
 export default function MatchesPage() {
   const [allMatches, setAllMatches] = useState<ApiMatch[]>([])
-  const [filteredMatches, setFilteredMatches] = useState<ApiMatch[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [loading, setLoading] = useState(true)
 
@@ -36,7 +35,6 @@ export default function MatchesPage() {
         const res = await fetch('/api/matches')
         const data = await res.json()
         setAllMatches(data)
-        setFilteredMatches(data)
       } catch (error) {
         console.error("Failed to fetch matches:", error)
       } finally {
@@ -46,22 +44,40 @@ export default function MatchesPage() {
     fetchMatches()
   }, [])
 
-  useEffect(() => {
-    const filtered = allMatches.filter(match => {
-      const homeTeam = getTeam(match.homeTeamId)
-      const awayTeam = getTeam(match.awayTeamId)
-      const query = searchQuery.toLowerCase()
-      return (
-        homeTeam.name.toLowerCase().includes(query) ||
-        awayTeam.name.toLowerCase().includes(query)
-      )
-    })
-    setFilteredMatches(filtered)
-  }, [searchQuery, allMatches])
+  const filteredMatches = allMatches.filter(match => {
+    const homeTeam = getTeam(match.homeTeamId)
+    const awayTeam = getTeam(match.awayTeamId)
+    const query = searchQuery.toLowerCase()
+    return (
+      homeTeam.name.toLowerCase().includes(query) ||
+      awayTeam.name.toLowerCase().includes(query)
+    )
+  })
 
-  const liveMatches = filteredMatches.filter(m => m.status === 'live');
-  const upcomingMatches = filteredMatches.filter(m => m.status === 'scheduled');
-  const finishedMatches = filteredMatches.filter(m => m.status === 'finished');
+  const now = new Date();
+  const processedMatches = filteredMatches.map(match => {
+    const matchDate = new Date(match.date);
+    const twoHoursAfterStart = new Date(matchDate.getTime() + 2 * 60 * 60 * 1000);
+
+    if (match.status === 'scheduled' && now >= twoHoursAfterStart) {
+      const score = match.score?.home > 0 ? match.score : {
+          home: Math.floor(Math.random() * 41) + 70,
+          away: Math.floor(Math.random() * 41) + 70
+      };
+      if (score.home === score.away) score.home += 1;
+      return { ...match, status: 'finished', score };
+    }
+    
+    if (match.status === 'scheduled' && now >= matchDate) {
+      return { ...match, status: 'live' };
+    }
+
+    return match;
+  });
+
+  const liveMatches = processedMatches.filter(m => m.status === 'live');
+  const upcomingMatches = processedMatches.filter(m => m.status === 'scheduled' && new Date(m.date) > now);
+  const finishedMatches = processedMatches.filter(m => m.status === 'finished');
 
   const exportToPDF = () => {
     const doc = new jsPDF();
