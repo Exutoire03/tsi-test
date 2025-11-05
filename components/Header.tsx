@@ -10,7 +10,6 @@ function ThemeToggle() {
 
   useEffect(() => {
     setMounted(true)
-    // Vérifier le thème stocké dans localStorage ou la préférence système
     const savedTheme = localStorage.getItem('theme')
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
     
@@ -33,7 +32,6 @@ function ThemeToggle() {
     }
   }
 
-  // Éviter le flash de contenu non stylé
   if (!mounted) {
     return (
       <button
@@ -52,7 +50,6 @@ function ThemeToggle() {
       className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border hover:bg-hover transition-colors"
     >
       {isDark ? (
-        // Icône Soleil (mode clair)
         <svg 
           xmlns="http://www.w3.org/2000/svg" 
           viewBox="0 0 24 24" 
@@ -74,7 +71,6 @@ function ThemeToggle() {
           <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
         </svg>
       ) : (
-        // Icône Lune (mode sombre)
         <svg 
           xmlns="http://www.w3.org/2000/svg" 
           viewBox="0 0 24 24" 
@@ -92,8 +88,9 @@ function ThemeToggle() {
   )
 }
 
-
 export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-50 bg-background border-b border-border shadow-md">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -117,15 +114,41 @@ export default function Header() {
             <ThemeToggle />
             <Link
               href="/matchs"
-              className="inline-flex h-10 items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white hover:bg-hover hover:text-foreground transition-all"
+              className="hidden sm:inline-flex h-10 items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white hover:bg-hover hover:text-foreground transition-all"
             >
               🔴 Matchs en direct
             </Link>
+            <button
+              className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border hover:bg-hover transition-colors"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Open menu"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </button>
           </div>
         </div>
       </div>
+      {isOpen && (
+        <div className="md:hidden bg-background border-t border-border">
+          <nav className="flex flex-col gap-4 p-4">
+            <Link href="/" className="text-sm font-medium text-foreground-secondary hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>Accueil</Link>
+            <Link href="/teams" className="text-sm font-medium text-foreground-secondary hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>Équipes</Link>
+            <Link href="/players" className="text-sm font-medium text-foreground-secondary hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>Joueurs</Link>
+            <Link href="/matchs" className="text-sm font-medium text-foreground-secondary hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>Matchs</Link>
+            <Link href="/standings" className="text-sm font-medium text-foreground-secondary hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>Classement</Link>
+            <Link
+              href="/matchs"
+              className="inline-flex h-10 items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white hover:bg-hover hover:text-foreground transition-all sm:hidden"
+              onClick={() => setIsOpen(false)}
+            >
+              🔴 Matchs en direct
+            </Link>
+          </nav>
+        </div>
+      )}
     </header>
   )
 }
+
 
 

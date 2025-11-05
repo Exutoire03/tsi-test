@@ -46,29 +46,27 @@ export default function MatchCard(props: MatchCardProps) {
         </div>
       )}
 
-      <div className="flex items-center justify-between gap-4">
-        <div className="flex items-center gap-3 flex-1">
+      <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4">
+        <div className="flex items-center gap-3 w-full sm:w-auto justify-center sm:justify-start flex-1 min-w-0">
           <Image src={homeTeamLogo} alt={homeTeamName} width={40} height={40} className="object-contain" />
-          <span className="text-sm text-foreground font-semibold">{homeTeamName}</span>
+          <span className="text-sm text-foreground font-semibold truncate">{homeTeamName}</span>
         </div>
         
         {isFinished ? (
-          <div className="text-2xl font-bold text-primary">{homeScore}</div>
+          <div className="text-2xl font-bold text-primary flex items-center gap-3">
+            <span>{homeScore}</span>
+            <span>-</span>
+            <span>{awayScore}</span>
+          </div>
         ) : (
           <div className="text-xl font-bold text-foreground-secondary">VS</div>
         )}
         
-        <div className="flex items-center gap-3 flex-1 justify-end">
-          <span className="text-sm text-foreground font-semibold text-right">{awayTeamName}</span>
+        <div className="flex items-center gap-3 w-full sm:w-auto justify-center sm:justify-end flex-1 min-w-0">
+          <span className="text-sm text-foreground font-semibold truncate text-right">{awayTeamName}</span>
           <Image src={awayTeamLogo} alt={awayTeamName} width={40} height={40} className="object-contain" />
         </div>
       </div>
-
-      {isFinished && (
-        <div className="mt-2 flex items-center justify-center">
-          <div className="text-2xl font-bold text-primary">{awayScore}</div>
-        </div>
-      )}
 
       <div className="mt-4 pt-3 border-t border-border flex items-center justify-between text-xs text-foreground-secondary">
         <div className="flex items-center gap-1">
@@ -83,5 +81,4 @@ export default function MatchCard(props: MatchCardProps) {
     </div>
   )
 }
-
 
