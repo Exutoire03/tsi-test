@@ -1,6 +1,7 @@
 import { headers } from 'next/headers'
-import TeamCard from '../components/TeamCard'
+import TeamCard from '@/components/TeamCard'
 import fallbackTeams from '@/data/teams.json'
+import Link from 'next/link'
 
 type Team = {
   id: number
@@ -29,16 +30,26 @@ export default async function TeamsPage() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-      <div className="flex items-end justify-between">
-        <h1 className="text-2xl sm:text-3xl font-bold text-text-primary">Équipes</h1>
-        <div className="text-xs text-text-secondary">{data.length} équipes</div>
-      </div>
+    <div className="min-h-screen bg-background">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-8">
+          <div>
+            <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-2">Les Équipes</h1>
+            <p className="text-foreground-secondary">Découvrez les {data.length} équipes de la TSI Basket League</p>
+          </div>
+          <Link 
+            href="/" 
+            className="mt-4 sm:mt-0 text-sm text-primary hover:text-secondary font-semibold transition-colors"
+          >
+            ← Retour à l'accueil
+          </Link>
+        </div>
 
-      <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-        {data.map((team) => (
-          <TeamCard key={team.id} team={team} />
-        ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {data.map((team) => (
+            <TeamCard key={team.id} team={team} />
+          ))}
+        </div>
       </div>
     </div>
   )

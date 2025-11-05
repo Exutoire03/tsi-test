@@ -43,57 +43,78 @@ export default async function TeamDetailPage({ params }: { params: { id: string 
 
   if (!team) {
     return (
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-        <p className="text-text-secondary">Équipe introuvable.</p>
-        <Link href="/equipes" className="mt-4 inline-block text-sm text-secondary hover:text-primary">Retour aux équipes</Link>
+      <div className="min-h-screen bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+          <p className="text-foreground-secondary text-lg">Équipe introuvable.</p>
+          <Link href="/teams" className="mt-4 inline-block text-sm text-primary hover:text-secondary font-semibold">← Retour aux équipes</Link>
+        </div>
       </div>
     )
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 space-y-8">
-      <div className="flex items-center gap-4">
-        <div className="rounded-md border border-border p-2">
-          <Image src={team.logo} alt={team.name} width={64} height={64} />
-        </div>
-        <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-text-primary">{team.name}</h1>
-          <p className="text-text-secondary text-sm">{team.city} {team.foundationYear ? `• Fondée en ${team.foundationYear}` : ''}</p>
-        </div>
-      </div>
-
-      <section>
-        <h2 className="text-xl font-semibold text-text-primary">Effectif</h2>
-        {roster.length === 0 ? (
-          <p className="mt-3 text-sm text-text-secondary">Aucun joueur trouvé.</p>
-        ) : (
-          <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {roster.map((pl) => (
-              <div key={pl.id} className="rounded-lg border border-border bg-background p-4">
-                <div className="flex items-center gap-3">
-                  <div className="rounded-md border border-border p-1">
-                    <Image src={pl.photo} alt={`${pl.firstName} ${pl.lastName}`} width={40} height={40} />
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold text-text-primary">{pl.firstName} {pl.lastName}</div>
-                    <div className="text-xs text-text-secondary">#{pl.number} • {pl.position}</div>
-                  </div>
-                </div>
-                {pl.stats && (
-                  <div className="mt-3 grid grid-cols-3 text-center text-xs text-text-secondary">
-                    <div><span className="block text-text-primary font-semibold">{pl.stats.points}</span> PTS</div>
-                    <div><span className="block text-text-primary font-semibold">{pl.stats.rebounds}</span> REB</div>
-                    <div><span className="block text-text-primary font-semibold">{pl.stats.assists}</span> AST</div>
-                  </div>
-                )}
-              </div>
-            ))}
+    <div className="min-h-screen bg-background">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 space-y-10">
+        {/* En-tête de l'équipe */}
+        <div className="bg-background-secondary border border-border rounded-lg p-8">
+          <div className="flex items-center gap-6">
+            <div className="rounded-lg border-2 border-primary p-3 bg-background">
+              <Image src={team.logo} alt={team.name} width={80} height={80} className="object-contain" />
+            </div>
+            <div>
+              <h1 className="text-3xl sm:text-5xl font-bold text-foreground mb-2">{team.name}</h1>
+              <p className="text-foreground-secondary text-lg">
+                📍 {team.city} {team.foundationYear ? `• Fondée en ${team.foundationYear}` : ''}
+              </p>
+            </div>
           </div>
-        )}
-      </section>
+        </div>
 
-      <div>
-        <Link href="/equipes" className="text-sm text-secondary hover:text-primary">← Retour aux équipes</Link>
+        {/* Section Effectif */}
+        <section>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-3xl font-bold text-foreground">Effectif</h2>
+            <span className="text-sm text-foreground-secondary">{roster.length} joueurs</span>
+          </div>
+          {roster.length === 0 ? (
+            <p className="mt-3 text-foreground-secondary bg-background-secondary border border-border rounded-lg p-8 text-center">
+              Aucun joueur trouvé.
+            </p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {roster.map((pl) => (
+                <div key={pl.id} className="rounded-lg border border-border bg-background-secondary p-5 hover:shadow-lg hover:border-primary transition-all">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="rounded-md border-2 border-primary p-1 bg-background">
+                      <Image src={pl.photo} alt={`${pl.firstName} ${pl.lastName}`} width={50} height={50} className="object-cover" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-bold text-foreground">{pl.firstName} {pl.lastName}</div>
+                      <div className="text-xs text-primary font-semibold">#{pl.number} • {pl.position}</div>
+                    </div>
+                  </div>
+                  {pl.stats && (
+                    <div className="mt-4 pt-4 border-t border-border grid grid-cols-3 text-center text-xs text-foreground-secondary">
+                      <div><span className="block text-primary font-bold text-base">{pl.stats.points}</span> PTS</div>
+                      <div><span className="block text-success font-bold text-base">{pl.stats.rebounds}</span> REB</div>
+                      <div><span className="block text-secondary font-bold text-base">{pl.stats.assists}</span> AST</div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+
+        {/* Navigation */}
+        <div className="flex gap-4">
+          <Link href="/teams" className="text-sm text-primary hover:text-secondary font-semibold transition-colors">
+            ← Retour aux équipes
+          </Link>
+          <Link href="/" className="text-sm text-primary hover:text-secondary font-semibold transition-colors">
+            Accueil
+          </Link>
+        </div>
       </div>
     </div>
   )
