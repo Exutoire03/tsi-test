@@ -226,24 +226,6 @@ Les contributions sont les bienvenues ! Pour contribuer :
 4. Pushez vers la branche (`git push origin feature/AmazingFeature`)
 5. Ouvrez une Pull Request
 
-## 📝 Licence
-
-Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
-
 ## 👥 Auteurs
 
-- **Votre Nom** - *Développement initial* - [VotreGitHub](https://github.com/votre-username)
-
-## 🙏 Remerciements
-
-- Design inspiré par les meilleures plateformes sportives
-- Icônes et visuels de basketball
-- Communauté Next.js et React
-
----
-
-<div align="center">
-  <strong>🏀 TSI Basket League - L'élite du basketball africain 🏀</strong>
-  <br>
-  <sub>Fait avec ❤️ et Next.js</sub>
-</div>
+- **Cheikh** - *Développement initial* - [Cheikh](https://github.com/Exutoire03)
