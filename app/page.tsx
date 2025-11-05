@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { headers } from "next/headers";
 
 interface Team {
   id: number;
@@ -32,29 +33,34 @@ interface Standing {
   gamesPlayed: number;
 }
 
-async function getMatches(): Promise<Match[]> {
-  const res = await fetch(`http://localhost:3000/api/matches`, { cache: 'no-store' });
+async function getMatches(base: string): Promise<Match[]> {
+  const res = await fetch(`${base}/api/matches`, { cache: 'no-store' });
   if (!res.ok) return [];
   return res.json();
 }
 
-async function getTeams(): Promise<Team[]> {
-  const res = await fetch(`http://localhost:3000/api/teams`, { cache: 'no-store' });
+async function getTeams(base: string): Promise<Team[]> {
+  const res = await fetch(`${base}/api/teams`, { cache: 'no-store' });
   if (!res.ok) return [];
   return res.json();
 }
 
-async function getStandings(): Promise<Standing[]> {
-  const res = await fetch(`http://localhost:3000/api/standings`, { cache: 'no-store' });
+async function getStandings(base: string): Promise<Standing[]> {
+  const res = await fetch(`${base}/api/standings`, { cache: 'no-store' });
   if (!res.ok) return [];
   return res.json();
 }
 
 export default async function Home() {
+  const h = await headers();
+  const protocol = h.get('x-forwarded-proto') ?? 'https';
+  const host = h.get('host') ?? 'localhost:3000';
+  const base = `${protocol}://${host}`;
+
   const [matches, teams, standings] = await Promise.all([
-    getMatches(),
-    getTeams(),
-    getStandings()
+    getMatches(base),
+    getTeams(base),
+    getStandings(base)
   ]);
 
   const finishedMatches = matches.filter(m => m.status === 'finished').slice(0, 5);
@@ -96,7 +102,7 @@ export default async function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/matches"
+              href="/matchs"
               className="bg-primary text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-hover hover:text-foreground transition-all transform hover:scale-105"
             >
               Voir les matchs
@@ -116,7 +122,7 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">Derniers résultats</h2>
-            <Link href="/matches" className="text-primary hover:text-secondary font-semibold">
+            <Link href="/matchs" className="text-primary hover:text-secondary font-semibold">
               Voir tous les matchs →
             </Link>
           </div>
@@ -182,7 +188,7 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">Prochains matchs</h2>
-            <Link href="/matches" className="text-primary hover:text-secondary font-semibold">
+            <Link href="/matchs" className="text-primary hover:text-secondary font-semibold">
               Calendrier complet →
             </Link>
           </div>
