@@ -34,38 +34,43 @@ export default function MatchCard(props: MatchCardProps) {
   return (
     <div
       className={cn(
-        'rounded-lg border border-border p-4 transition',
-        isFinished ? 'bg-surface hover:shadow-sm' : 'bg-background'
+        'rounded-lg border border-border p-5 transition-all hover:shadow-lg',
+        isFinished ? 'bg-background-secondary hover:border-success' : 'bg-background hover:border-primary'
       )}
     >
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2">
-          <Image src={homeTeamLogo} alt={homeTeamName} width={28} height={28} />
-          <span className="text-sm text-text-primary font-medium">{homeTeamName}</span>
+      {!isFinished && (
+        <div className="flex justify-center mb-3">
+          <span className="text-xs uppercase tracking-wide rounded-full bg-primary text-white px-3 py-1 font-semibold">
+            📅 À venir
+          </span>
         </div>
+      )}
+
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-3 flex-1">
+          <Image src={homeTeamLogo} alt={homeTeamName} width={40} height={40} className="object-contain" />
+          <span className="text-sm text-foreground font-semibold">{homeTeamName}</span>
+        </div>
+        
         {isFinished ? (
-          <div className="text-sm font-semibold text-text-primary">{homeScore}</div>
+          <div className="text-2xl font-bold text-primary">{homeScore}</div>
         ) : (
-          <span className="text-[10px] uppercase tracking-wide rounded-full border border-border px-2 py-0.5 text-text-secondary">À venir</span>
+          <div className="text-xl font-bold text-foreground-secondary">VS</div>
         )}
-        <div className="flex items-center gap-2">
-          {!isFinished && <span className="text-sm text-text-primary font-medium">{awayTeamName}</span>}
-          <Image src={awayTeamLogo} alt={awayTeamName} width={28} height={28} />
+        
+        <div className="flex items-center gap-3 flex-1 justify-end">
+          <span className="text-sm text-foreground font-semibold text-right">{awayTeamName}</span>
+          <Image src={awayTeamLogo} alt={awayTeamName} width={40} height={40} className="object-contain" />
         </div>
       </div>
 
       {isFinished && (
-        <div className="mt-2 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2 opacity-0 select-none">
-            {/* spacer to align layout with top row */}
-            <span className="text-sm">sp</span>
-          </div>
-          <div className="text-sm font-semibold text-text-primary">{awayScore}</div>
-          <div className="opacity-0 select-none">sp</div>
+        <div className="mt-2 flex items-center justify-center">
+          <div className="text-2xl font-bold text-primary">{awayScore}</div>
         </div>
       )}
 
-      <div className="mt-3 flex items-center justify-between text-xs text-text-secondary">
+      <div className="mt-4 pt-3 border-t border-border flex items-center justify-between text-xs text-foreground-secondary">
         <div className="flex items-center gap-1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4">
             <rect x="3" y="4" width="18" height="18" rx="2"/>
@@ -73,7 +78,7 @@ export default function MatchCard(props: MatchCardProps) {
           </svg>
           <span>{dateLabel}</span>
         </div>
-        <span>{venue}</span>
+        <span className="text-right">📍 {venue}</span>
       </div>
     </div>
   )
