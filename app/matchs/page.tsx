@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import MatchCard from '@/components/MatchCard'
 import allTeams from '@/data/teams.json'
+import jsPDF from 'jspdf'
+import autoTable from 'jspdf-autotable'
 
 type ApiMatch = {
   id: number
@@ -61,6 +63,55 @@ export default function MatchesPage() {
   const upcomingMatches = filteredMatches.filter(m => m.status === 'scheduled');
   const finishedMatches = filteredMatches.filter(m => m.status === 'finished');
 
+  const exportToPDF = () => {
+    const doc = new jsPDF();
+    doc.text("Matchs et Résultats - TSI Basket League", 14, 15);
+    let startY = 25;
+
+    if (liveMatches.length > 0) {
+      doc.text("Matchs en direct", 14, startY);
+      autoTable(doc, {
+        startY: startY + 5,
+        head: [['Date', 'Équipe à domicile', 'Score', 'Équipe extérieure', 'Lieu']],
+        body: liveMatches.map(m => {
+          const home = getTeam(m.homeTeamId);
+          const away = getTeam(m.awayTeamId);
+          return [new Date(m.date).toLocaleDateString('fr-FR'), home.name, `${m.score.home} - ${m.score.away}`, away.name, m.venue];
+        }),
+      });
+      startY = (doc as any).lastAutoTable.finalY + 15;
+    }
+
+    if (upcomingMatches.length > 0) {
+      doc.text("Prochains matchs", 14, startY);
+      autoTable(doc, {
+        startY: startY + 5,
+        head: [['Date', 'Équipes', 'Lieu']],
+        body: upcomingMatches.map(m => {
+          const home = getTeam(m.homeTeamId);
+          const away = getTeam(m.awayTeamId);
+          return [new Date(m.date).toLocaleString('fr-FR'), `${home.name} vs ${away.name}`, m.venue];
+        }),
+      });
+      startY = (doc as any).lastAutoTable.finalY + 15;
+    }
+
+    if (finishedMatches.length > 0) {
+      doc.text("Résultats", 14, startY);
+      autoTable(doc, {
+        startY: startY + 5,
+        head: [['Date', 'Équipe à domicile', 'Score', 'Équipe extérieure', 'Lieu']],
+        body: finishedMatches.map(m => {
+          const home = getTeam(m.homeTeamId);
+          const away = getTeam(m.awayTeamId);
+          return [new Date(m.date).toLocaleDateString('fr-FR'), home.name, `${m.score.home} - ${m.score.away}`, away.name, m.venue];
+        }),
+      });
+    }
+
+    doc.save('matchs-resultats.pdf');
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 space-y-12">
@@ -69,17 +120,25 @@ export default function MatchesPage() {
             <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-2">Matchs et résultats</h1>
             <p className="text-foreground-secondary">{filteredMatches.length} match{filteredMatches.length > 1 ? 's' : ''} trouvé{filteredMatches.length > 1 ? 's' : ''}</p>
           </div>
-          <div className="relative w-full sm:w-auto">
-            <input
-              type="search"
-              placeholder="Rechercher par équipe..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="rounded-lg border-2 border-border bg-background-secondary text-foreground pl-10 pr-4 py-2 focus:ring-2 focus:ring-primary focus:border-primary transition-all w-full"
-            />
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <svg className="h-5 w-5 text-foreground-secondary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <div className="flex items-center gap-4">
+            <div className="relative w-full sm:w-auto">
+              <input
+                type="search"
+                placeholder="Rechercher par équipe..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="rounded-lg border-2 border-border bg-background-secondary text-foreground pl-10 pr-4 py-2 focus:ring-2 focus:ring-primary focus:border-primary transition-all w-full"
+              />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg className="h-5 w-5 text-foreground-secondary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              </div>
             </div>
+            <button
+              onClick={exportToPDF}
+              className="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white hover:bg-hover hover:text-foreground transition-all whitespace-nowrap"
+            >
+              Exporter en PDF
+            </button>
           </div>
         </header>
 
