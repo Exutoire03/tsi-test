@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import StandingsTable from '@/components/StandingsTable';
 import Link from 'next/link';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 // Interface pour les données du classement
 interface Standing {
@@ -38,6 +40,28 @@ export default function StandingsPage() {
     fetchStandings();
   }, []);
 
+  const exportToPDF = () => {
+    const doc = new jsPDF();
+    doc.text("Classement des Équipes - TSI Basket League", 14, 15);
+
+    autoTable(doc, {
+      startY: 20,
+      head: [['#', 'Équipe', 'V', 'D', 'PF', 'PA', 'MJ', 'Diff']],
+      body: standings.map((team, index) => [
+        index + 1,
+        team.name,
+        team.wins,
+        team.losses,
+        team.pointsFor,
+        team.pointsAgainst,
+        team.gamesPlayed,
+        team.pointsFor - team.pointsAgainst,
+      ]),
+    });
+
+    doc.save('classement-equipes.pdf');
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
@@ -50,12 +74,20 @@ export default function StandingsPage() {
           <p className="text-lg text-foreground-secondary max-w-2xl mx-auto mb-6">
             Suivez la course aux playoffs et découvrez qui dominera la saison régulière de la TSI Basket League.
           </p>
-          <Link 
-            href="/" 
-            className="inline-block text-sm text-primary hover:text-secondary font-semibold transition-colors"
-          >
-            ← Retour à l'accueil
-          </Link>
+          <div className="flex justify-center gap-4">
+            <Link 
+              href="/standings/players" 
+              className="inline-block text-sm text-primary hover:text-secondary font-semibold transition-colors"
+            >
+              Voir le classement des joueurs
+            </Link>
+            <button
+              onClick={exportToPDF}
+              className="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white hover:bg-hover hover:text-foreground transition-all"
+            >
+              Exporter en PDF
+            </button>
+          </div>
         </header>
 
         {/* Contenu principal */}
