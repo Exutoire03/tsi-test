@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "Cotonou Falcons",
+    "city": "Cotonou",
+    "logo": "/teams/cotonou-falcons.png",
+    "mainColor": "#1E3A8A",
+    "secondaryColor": "#FACC15",
+    "foundationYear": 2020
+  },
+  {
+    "id": 2,
+    "name": "Abidjan Lions",
+    "city": "Abidjan",
+    "logo": "/teams/abidjan-lions.png",
+    "mainColor": "#F59E0B",
+    "secondaryColor": "#1F2937",
+    "foundationYear": 2018
+  },
+  {
+    "id": 3,
+    "name": "Dakar Titans",
+    "city": "Dakar",
+    "logo": "/teams/dakar-titans.png",
+    "mainColor": "#EF4444",
+    "secondaryColor": "#1E293B",
+    "foundationYear": 2019
+  },
+  {
+    "id": 4,
+    "name": "Lomé Panthers",
+    "city": "Lomé",
+    "logo": "/teams/lome-panthers.png",
+    "mainColor": "#0EA5E9",
+    "secondaryColor": "#111827",
+    "foundationYear": 2021
+  },
+  {
+    "id": 5,
+    "name": "Accra Eagles",
+    "city": "Accra",
+    "logo": "/teams/accra-eagles.png",
+    "mainColor": "#22C55E",
+    "secondaryColor": "#1E293B",
+    "foundationYear": 2017
+  },
+  {
+    "id": 6,
+    "name": "Bamako Warriors",
+    "city": "Bamako",
+    "logo": "/teams/bamako-warriors.png",
+    "mainColor": "#7C3AED",
+    "secondaryColor": "#EAB308",
+    "foundationYear": 2020
+  },
+  {
+    "id": 7,
+    "name": "Lagos Sharks",
+    "city": "Lagos",
+    "logo": "/teams/lagos-sharks.png",
+    "mainColor": "#0284C7",
+    "secondaryColor": "#0F172A",
+    "foundationYear": 2016
+  },
+  {
+    "id": 8,
+    "name": "Yaoundé Hawks",
+    "city": "Yaoundé",
+    "logo": "/teams/yaounde-hawks.png",
+    "mainColor": "#E11D48",
+    "secondaryColor": "#FACC15",
+    "foundationYear": 2019
+  },
+  {
+    "id": 9,
+    "name": "Ouagadougou Bulls",
+    "city": "Ouagadougou",
+    "logo": "/teams/ouagadougou-bulls.png",
+    "mainColor": "#F97316",
+    "secondaryColor": "#1E3A8A",
+    "foundationYear": 2018
+  },
+  {
+    "id": 10,
+    "name": "Kinshasa Royals",
+    "city": "Kinshasa",
+    "logo": "/teams/kinshasa-royals.png",
+    "mainColor": "#2563EB",
+    "secondaryColor": "#FBBF24",
+    "foundationYear": 2021
+  }
+]

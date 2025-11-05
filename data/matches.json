@@ -1,0 +1,227 @@
+[
+  {
+    "id": 1,
+    "homeTeamId": 1,
+    "awayTeamId": 2,
+    "date": "2025-09-14T18:00:00Z",
+    "status": "finished",
+    "score": { "home": 78, "away": 71 },
+    "venue": "Stade de Cotonou"
+  },
+  {
+    "id": 2,
+    "homeTeamId": 3,
+    "awayTeamId": 4,
+    "date": "2025-09-20T19:30:00Z",
+    "status": "finished",
+    "score": { "home": 89, "away": 84 },
+    "venue": "Arena de Dakar"
+  },
+  {
+    "id": 3,
+    "homeTeamId": 5,
+    "awayTeamId": 6,
+    "date": "2025-09-23T18:00:00Z",
+    "status": "finished",
+    "score": { "home": 95, "away": 99 },
+    "venue": "Accra Sports Hall"
+  },
+  {
+    "id": 4,
+    "homeTeamId": 7,
+    "awayTeamId": 8,
+    "date": "2025-09-27T17:00:00Z",
+    "status": "finished",
+    "score": { "home": 84, "away": 85 },
+    "venue": "Lagos Arena"
+  },
+  {
+    "id": 5,
+    "homeTeamId": 9,
+    "awayTeamId": 10,
+    "date": "2025-09-29T18:00:00Z",
+    "status": "finished",
+    "score": { "home": 88, "away": 92 },
+    "venue": "Ouaga Dome"
+  },
+  {
+    "id": 6,
+    "homeTeamId": 2,
+    "awayTeamId": 3,
+    "date": "2025-10-04T18:30:00Z",
+    "status": "finished",
+    "score": { "home": 76, "away": 80 },
+    "venue": "Palais des Sports d’Abidjan"
+  },
+  {
+    "id": 7,
+    "homeTeamId": 4,
+    "awayTeamId": 1,
+    "date": "2025-10-08T18:00:00Z",
+    "status": "finished",
+    "score": { "home": 90, "away": 79 },
+    "venue": "Lomé Sports Complex"
+  },
+  {
+    "id": 8,
+    "homeTeamId": 6,
+    "awayTeamId": 7,
+    "date": "2025-10-12T19:00:00Z",
+    "status": "finished",
+    "score": { "home": 83, "away": 86 },
+    "venue": "Bamako Arena"
+  },
+  {
+    "id": 9,
+    "homeTeamId": 8,
+    "awayTeamId": 9,
+    "date": "2025-10-15T18:00:00Z",
+    "status": "finished",
+    "score": { "home": 77, "away": 85 },
+    "venue": "Yaoundé Dome"
+  },
+  {
+    "id": 10,
+    "homeTeamId": 10,
+    "awayTeamId": 5,
+    "date": "2025-10-18T18:00:00Z",
+    "status": "finished",
+    "score": { "home": 91, "away": 87 },
+    "venue": "Kinshasa Arena"
+  },
+  {
+    "id": 11,
+    "homeTeamId": 1,
+    "awayTeamId": 3,
+    "date": "2025-10-25T18:00:00Z",
+    "status": "finished",
+    "score": { "home": 99, "away": 86 },
+    "venue": "Stade de Cotonou"
+  },
+  {
+    "id": 12,
+    "homeTeamId": 2,
+    "awayTeamId": 4,
+    "date": "2025-10-27T17:30:00Z",
+    "status": "finished",
+    "score": { "home": 88, "away": 91 },
+    "venue": "Palais des Sports d’Abidjan"
+  },
+  {
+    "id": 13,
+    "homeTeamId": 5,
+    "awayTeamId": 7,
+    "date": "2025-11-01T18:00:00Z",
+    "status": "live",
+    "score": { "home": 54, "away": 59 },
+    "venue": "Accra Sports Hall"
+  },
+  {
+    "id": 14,
+    "homeTeamId": 6,
+    "awayTeamId": 9,
+    "date": "2025-11-03T18:30:00Z",
+    "status": "live",
+    "score": { "home": 88, "away": 86 },
+    "venue": "Bamako Arena"
+  },
+  {
+    "id": 15,
+    "homeTeamId": 8,
+    "awayTeamId": 10,
+    "date": "2025-11-05T19:00:00Z",
+    "status": "scheduled",
+    "score": { "home": 88, "away": 80 },
+    "venue": "Yaoundé Dome"
+  },
+  {
+    "id": 16,
+    "homeTeamId": 3,
+    "awayTeamId": 5,
+    "date": "2025-11-09T18:00:00Z",
+    "status": "scheduled",
+    "score": { "home": 68, "away": 80 },
+    "venue": "Arena de Dakar"
+  },
+  {
+    "id": 17,
+    "homeTeamId": 4,
+    "awayTeamId": 2,
+    "date": "2025-11-11T18:00:00Z",
+    "status": "scheduled",
+    "score": { "home": 70, "away": 60 },
+    "venue": "Lomé Sports Complex"
+  },
+  {
+    "id": 18,
+    "homeTeamId": 7,
+    "awayTeamId": 1,
+    "date": "2025-11-13T18:00:00Z",
+    "status": "scheduled",
+    "score": { "home": 80, "away": 85 },
+    "venue": "Lagos Arena"
+  },
+  {
+    "id": 19,
+    "homeTeamId": 9,
+    "awayTeamId": 6,
+    "date": "2025-11-17T18:00:00Z",
+    "status": "scheduled",
+    "score": { "home": 90, "away": 65 },
+    "venue": "Ouaga Dome"
+  },
+  {
+    "id": 20,
+    "homeTeamId": 10,
+    "awayTeamId": 8,
+    "date": "2025-11-20T18:00:00Z",
+    "status": "scheduled",
+    "score": { "home": 68, "away": 80 },
+    "venue": "Kinshasa Arena"
+  },
+  {
+    "id": 21,
+    "homeTeamId": 1,
+    "awayTeamId": 4,
+    "date": "2025-11-24T18:00:00Z",
+    "status": "scheduled",
+    "score": { "home": 97, "away": 65 },
+    "venue": "Stade de Cotonou"
+  },
+  {
+    "id": 22,
+    "homeTeamId": 2,
+    "awayTeamId": 7,
+    "date": "2025-11-26T18:00:00Z",
+    "status": "scheduled",
+    "score": { "home": 58, "away": 60 },
+    "venue": "Palais des Sports d’Abidjan"
+  },
+  {
+    "id": 23,
+    "homeTeamId": 3,
+    "awayTeamId": 9,
+    "date": "2025-11-28T18:00:00Z",
+    "status": "scheduled",
+    "score": { "home": 67, "away": 80 },
+    "venue": "Arena de Dakar"
+  },
+  {
+    "id": 24,
+    "homeTeamId": 5,
+    "awayTeamId": 10,
+    "date": "2025-12-01T18:00:00Z",
+    "status": "scheduled",
+    "score": { "home": 88, "away": 90 },
+    "venue": "Accra Sports Hall"
+  },
+  {
+    "id": 25,
+    "homeTeamId": 8,
+    "awayTeamId": 1,
+    "date": "2025-12-03T18:00:00Z",
+    "status": "scheduled",
+    "score": { "home": 88, "away": 99 },
+    "venue": "Yaoundé Dome"
+  }
+]
