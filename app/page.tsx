@@ -84,16 +84,7 @@ export default async function Home() {
           />
         </div>
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-          <div className="mb-6">
-            <Image
-              src="/logo-blanc.png"
-              alt="TSI Basket League"
-              width={150}
-              height={150}
-              className="mx-auto"
-              priority
-            />
-          </div>
+          
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-4">
             Bienvenue dans la TSI Basket League
           </h1>
