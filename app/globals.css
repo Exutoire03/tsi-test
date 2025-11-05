@@ -48,12 +48,26 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Mode sombre désactivé - le projet utilise un thème clair uniquement */
-    --background: #FFFFFF;
-    --foreground: #1C1C1E;
-  }
+.dark {
+  /* Fonds sombres */
+  --background: #0F1419;
+  --background-secondary: #1A1F2E;
+  
+  /* Textes clairs */
+  --foreground: #F5F5F5;
+  --foreground-secondary: #B0B0B0;
+  
+  /* Couleurs d'accent (conservées) */
+  --accent-primary: #FFB300;
+  --accent-secondary: #4A90E2;
+  
+  /* Couleurs d'état (conservées) */
+  --color-live: #E53935;
+  --color-success: #4CAF50;
+  
+  /* Bordures et interactions */
+  --border: #2D3748;
+  --hover: #2A2F3A;
 }
 
 body {

@@ -5,15 +5,16 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary text-white mt-12 border-t-4 border-primary" id="footer">
+    <footer className="bg-secondary dark:bg-background-secondary text-white dark:text-foreground mt-12 border-t-4 border-primary" id="footer">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-12">
           <div className="col-span-1 md:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-4 hover:opacity-80 transition-opacity">
-              <Image src="/logo-blanc.png" alt="TSI Basket League" width={40} height={40} className="object-contain" />
+              <Image src="/logo-blanc.png" alt="TSI Basket League" width={40} height={40} className="object-contain dark:hidden" />
+              <Image src="/logo.png" alt="TSI Basket League" width={40} height={40} className="object-contain hidden dark:block" />
               <span className="text-xl font-bold">TSI Basket League</span>
             </Link>
-            <p className="text-white/80 max-w-sm mb-6">
+            <p className="text-white/80 dark:text-foreground-secondary max-w-sm mb-6">
               La plateforme de référence pour suivre l'élite du basketball africain.
             </p>
             <div className="flex gap-4">
@@ -49,7 +50,7 @@ export default function Footer() {
 
           <div className="col-span-1">
             <h4 className="font-bold mb-4 text-primary">Navigation</h4>
-            <nav className="flex flex-col gap-2 text-white/80">
+            <nav className="flex flex-col gap-2 text-white/80 dark:text-foreground-secondary">
               <Link href="/teams" className="hover:text-primary transition-colors">Équipes</Link>
               <Link href="/players" className="hover:text-primary transition-colors">Joueurs</Link>
               <Link href="/matchs" className="hover:text-primary transition-colors">Matchs</Link>
@@ -59,7 +60,7 @@ export default function Footer() {
 
           <div className="col-span-1">
             <h4 className="font-bold mb-4 text-primary">Liens utiles</h4>
-            <nav className="flex flex-col gap-2 text-white/80">
+            <nav className="flex flex-col gap-2 text-white/80 dark:text-foreground-secondary">
               <a href="#" className="hover:text-primary transition-colors">Politique de confidentialité</a>
               <a href="#" className="hover:text-primary transition-colors">Mentions légales</a>
               <a href="#" className="hover:text-primary transition-colors">Contact</a>
@@ -67,7 +68,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="py-6 border-t border-white/20 text-center text-white/60">
+        <div className="py-6 border-t border-white/20 dark:border-border text-center text-white/60 dark:text-foreground-secondary">
           <p>© {new Date().getFullYear()} TSI Basket League. Tous droits réservés.</p>
           <p className="text-sm mt-2">L'élite du basketball africain</p>
         </div>
