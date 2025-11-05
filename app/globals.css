@@ -1,21 +1,58 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Fonds */
+  --background: #FFFFFF;
+  --background-secondary: #F9FAFB;
+  
+  /* Textes */
+  --foreground: #1C1C1E;
+  --foreground-secondary: #5A5A5A;
+  
+  /* Couleurs d'accent */
+  --accent-primary: #FFB300;
+  --accent-secondary: #003366;
+  
+  /* Couleurs d'état */
+  --color-live: #E53935;
+  --color-success: #2E7D32;
+  
+  /* Bordures et interactions */
+  --border: #E0E0E0;
+  --hover: #FFF3CD;
 }
 
 @theme inline {
+  /* Fonds */
   --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
+  
+  /* Textes */
   --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  
+  /* Accents */
+  --color-primary: var(--accent-primary);
+  --color-secondary: var(--accent-secondary);
+  
+  /* États */
+  --color-live: var(--color-live);
+  --color-success: var(--color-success);
+  
+  /* Bordures et interactions */
+  --color-border: var(--border);
+  --color-hover: var(--hover);
+  
+  /* Fonts */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Mode sombre désactivé - le projet utilise un thème clair uniquement */
+    --background: #FFFFFF;
+    --foreground: #1C1C1E;
   }
 }
 
