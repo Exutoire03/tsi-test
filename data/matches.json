@@ -223,5 +223,23 @@
     "status": "scheduled",
     "score": { "home": 88, "away": 99 },
     "venue": "Yaoundé Dome"
+  },
+  {
+    "id": 26,
+    "homeTeamId": 1,
+    "awayTeamId": 2,
+    "date": "2025-11-05T20:30:00Z",
+    "status": "scheduled",
+    "score": { "home": 0, "away": 0 },
+    "venue": "Stade de l'Amitié"
+  },
+  {
+    "id": 27,
+    "homeTeamId": 3,
+    "awayTeamId": 4,
+    "date": "2025-11-05T20:50:00Z",
+    "status": "scheduled",
+    "score": { "home": 0, "away": 0 },
+    "venue": "Dakar Arena"
   }
 ]
