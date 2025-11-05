@@ -192,8 +192,8 @@ export default function MatchesPage() {
 function MatchItem({ match, status }: { match: ApiMatch, status?: 'upcoming' | 'finished' }) {
   const home = getTeam(match.homeTeamId)
   const away = getTeam(match.awayTeamId)
-  const dateLabel = new Date(match.date).toLocaleDateString('fr-FR', {
-    day: '2-digit', month: 'short', year: 'numeric'
+  const dateLabel = new Date(match.date).toLocaleString('fr-FR', {
+    day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
   })
 
   return (

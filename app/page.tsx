@@ -147,7 +147,7 @@ export default async function Home() {
                         {match.score.home} - {match.score.away}
                       </div>
                       <div className="text-xs text-foreground-secondary mt-1">
-                        {new Date(match.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}
+                        {new Date(match.date).toLocaleString('fr-FR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}
                       </div>
                     </div>
                     <div className="flex items-center gap-4 w-full sm:w-auto flex-1 justify-end">
