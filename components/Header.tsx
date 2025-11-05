@@ -107,7 +107,8 @@ export default function Header() {
             <Link href="/teams" className="text-sm font-medium text-foreground-secondary hover:text-primary transition-colors">Équipes</Link>
             <Link href="/players" className="text-sm font-medium text-foreground-secondary hover:text-primary transition-colors">Joueurs</Link>
             <Link href="/matchs" className="text-sm font-medium text-foreground-secondary hover:text-primary transition-colors">Matchs</Link>
-            <Link href="/standings" className="text-sm font-medium text-foreground-secondary hover:text-primary transition-colors">Classement</Link>
+            <Link href="/standings" className="text-sm font-medium text-foreground-secondary hover:text-primary transition-colors">Classement Équipes</Link>
+            <Link href="/standings/players" className="text-sm font-medium text-foreground-secondary hover:text-primary transition-colors">Classement Joueurs</Link>
           </nav>
 
           <div className="flex items-center gap-3">
@@ -135,7 +136,8 @@ export default function Header() {
             <Link href="/teams" className="text-sm font-medium text-foreground-secondary hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>Équipes</Link>
             <Link href="/players" className="text-sm font-medium text-foreground-secondary hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>Joueurs</Link>
             <Link href="/matchs" className="text-sm font-medium text-foreground-secondary hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>Matchs</Link>
-            <Link href="/standings" className="text-sm font-medium text-foreground-secondary hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>Classement</Link>
+            <Link href="/standings" className="text-sm font-medium text-foreground-secondary hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>Classement Équipes</Link>
+            <Link href="/standings/players" className="text-sm font-medium text-foreground-secondary hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>Classement Joueurs</Link>
             <Link
               href="/matchs"
               className="inline-flex h-10 items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white hover:bg-hover hover:text-foreground transition-all sm:hidden"
@@ -149,6 +151,4 @@ export default function Header() {
     </header>
   )
 }
-
-
 
