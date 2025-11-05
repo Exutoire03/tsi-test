@@ -3,6 +3,55 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { useNotifier } from './Notifications'
+import allTeams from '@/data/teams.json'
+
+type ApiMatch = {
+  id: number
+  homeTeamId: number
+  awayTeamId: number
+  date: string
+  status: string
+}
+
+function getTeam(teamId: number) {
+  return allTeams.find((t) => t.id === teamId) || { name: 'Unknown Team' };
+}
+
+function NotificationTrigger() {
+  const { addNotification } = useNotifier();
+  const [notifiedMatches, setNotifiedMatches] = useState<number[]>([]);
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      try {
+        const res = await fetch('/api/matches');
+        const matches: ApiMatch[] = await res.json();
+        
+        const now = new Date();
+
+        matches.forEach(match => {
+          if (match.status === 'scheduled') {
+            const matchDate = new Date(match.date);
+            if (now >= matchDate && !notifiedMatches.includes(match.id)) {
+              const homeTeam = getTeam(match.homeTeamId);
+              const awayTeam = getTeam(match.awayTeamId);
+              addNotification(`Le match ${homeTeam.name} vs ${awayTeam.name} vient de commencer !`);
+              setNotifiedMatches(prev => [...prev, match.id]);
+            }
+          }
+        });
+      } catch (error) {
+        console.error("Failed to fetch matches for notifications:", error);
+      }
+    }, 30000); // Check every 30 seconds
+
+    return () => clearInterval(interval);
+  }, [addNotification, notifiedMatches]);
+
+  return null; // This component does not render anything
+}
+
 
 function ThemeToggle() {
   const [isDark, setIsDark] = useState(false)
@@ -93,6 +142,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-background border-b border-border shadow-md">
+      <NotificationTrigger />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-4">
           <div className="flex items-center gap-3">
