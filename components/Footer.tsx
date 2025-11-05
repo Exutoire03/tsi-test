@@ -61,9 +61,9 @@ export default function Footer() {
           <div className="col-span-1">
             <h4 className="font-bold mb-4 text-primary">Liens utiles</h4>
             <nav className="flex flex-col gap-2 text-white/80 dark:text-foreground-secondary">
-              <a href="#" className="hover:text-primary transition-colors">Politique de confidentialité</a>
-              <a href="#" className="hover:text-primary transition-colors">Mentions légales</a>
-              <a href="#" className="hover:text-primary transition-colors">Contact</a>
+              <Link href="/privacy-policy" className="hover:text-primary transition-colors">Politique de confidentialité</Link>
+              <Link href="/legal-notice" className="hover:text-primary transition-colors">Mentions légales</Link>
+              <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
             </nav>
           </div>
         </div>
